@@ -23,7 +23,7 @@ const imageUrl = getImageUrl(plushie.path);
         <div class="card-body">
             <h2 class="card-title">{{ plushie.name }}</h2>
             <p>{{ plushie.description }}</p>
-            <div class="card-actions justify-end">
+            <div class="card-actions justify-center">
                 <button class="btn btn-primary" onclick="contactCard.showModal()">Order Now</button>
                 <dialog id="contactCard" class="modal">
                     <div class="modal-box">
