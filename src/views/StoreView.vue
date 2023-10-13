@@ -6,7 +6,8 @@ import plushies from '../inventory/inventory';
 <template>
     <div>
         <h1 class="flex flex-col place-items-center text-black m-auto text-5xl underline">Store</h1>
-        <div class="grid grid-cols-3 carousel rounded-box place-items-center">
+        <div
+            class="grid grid-cols-1 md:grid-cols-3 carousel md:carousel-vertical md:items-center rounded-box place-items-center">
             <ImageCard class="carousel-item" v-for="plushie in plushies" :key="plushie.id" :name="plushie.name"
                 :path="plushie.path" :description="plushie.description" :templateCredit="plushie.templateCredit" />
         </div>
