@@ -1,4 +1,9 @@
 <script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+function goToStore() {
+    router.push('/store');
+}
 </script>
 
 <template>
@@ -8,7 +13,7 @@
             <div>
                 <h1 class="text-5xl font-bold">BoxCat's Crochet &#129526;</h1>
                 <p class="py-6">Handmade Crochet Stuffed Animals for you or your loved ones</p>
-                <button class="btn btn-primary">Visit Store</button>
+                <button class="btn btn-primary" @click="goToStore">Visit Store</button>
             </div>
         </div>
     </div>

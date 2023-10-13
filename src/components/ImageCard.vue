@@ -7,18 +7,24 @@ const plushie = defineProps({
     templateCredit: String
 });
 
+function getImageUrl(name) {
+    return new URL(`../assets/images/${name}`, import.meta.url).href;
+};
+
+const imageUrl = getImageUrl(plushie.path);
+
 </script>
 
 <template>
     <div class="card w-96 bg-base-100 shadow-xl">
-        <figure><img :src="plushie.path" :alt="plushie.name" /></figure>
+        <figure><img :src="imageUrl" :alt="plushie.name" class="w-full" /></figure>
         <div class="card-body">
             <h2 class="card-title">{{ plushie.name }}</h2>
             <p>{{ plushie.description }}</p>
             <div class="card-actions justify-end">
                 <button class="btn btn-primary">Order Now</button>
             </div>
-            <p v-if="plushie.templateCredit">Crochet Design credits to {{ plushie.templateCredit }}</p>
+            <p v-if="plushie.templateCredit"><i>Crochet Design credits to {{ plushie.templateCredit }}</i></p>
         </div>
     </div>
 </template>
