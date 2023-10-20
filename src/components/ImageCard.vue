@@ -1,6 +1,5 @@
 <script setup>
-
-import ContactCard from './ContactCard.vue';
+import { RouterLink } from 'vue-router';
 
 const plushie = defineProps({
     name: String,
@@ -24,15 +23,7 @@ const imageUrl = getImageUrl(plushie.path);
             <h2 class="card-title">{{ plushie.name }}</h2>
             <p>{{ plushie.description }}</p>
             <div class="card-actions justify-center">
-                <button class="btn btn-primary" onclick="contactCard.showModal()">Order Now</button>
-                <dialog id="contactCard" class="modal">
-                    <div class="modal-box">
-                        <ContactCard />
-                        <div class="flex flex-col place-items-end">
-                            <button class="btn btn-secondary" onclick="contactCard.close()">Close</button>
-                        </div>
-                    </div>
-                </dialog>
+                <RouterLink to="/contact" class="btn btn-primary">Order Now</RouterLink>
             </div>
             <p v-if="plushie.templateCredit"><i>Crochet Design credits to {{ plushie.templateCredit }}</i></p>
         </div>

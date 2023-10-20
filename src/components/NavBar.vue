@@ -9,6 +9,7 @@ import { RouterLink } from 'vue-router';
                 <div class="flex space-x-4">
                     <RouterLink to="/" class="text-2xl font-bold">Home</RouterLink>
                     <RouterLink to="/store" class="text-2xl font-bold">Store</RouterLink>
+                    <RouterLink to="/contact" class="text-2xl font-bold">Contact</RouterLink>
                 </div>
             </div>
         </div>
