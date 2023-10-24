@@ -16,5 +16,8 @@ export default {
         require("@tailwindcss/forms"),
         require("daisyui")
     ],
+    daisyui: {
+        themes: ['cupcake']
+    }
 }
 
