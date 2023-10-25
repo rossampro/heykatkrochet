@@ -1,10 +1,13 @@
 <template>
-    <div>
-        <navbar />
-    </div>
+    <header>
+        <nav>
+            <navbar />
+        </nav>
+    </header>
 
     <div>
         <NuxtLayout>
+            <NuxtLoadingIndicator />
             <NuxtPage />
         </NuxtLayout>
     </div>

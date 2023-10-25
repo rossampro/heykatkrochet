@@ -10,6 +10,11 @@ export default defineNuxtConfig({
     },
     modules: [
         '@nuxt/image',
-        '@nuxtjs/supabase'
-    ]
+        '@nuxtjs/supabase',
+        '@pinia/nuxt',
+        'nuxt-icon',
+    ],
+    supabase: {
+        redirect: false,
+    }
 })

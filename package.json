@@ -16,8 +16,10 @@
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.16",
     "daisyui": "latest",
+    "dotenv": "^16.3.1",
     "drizzle-kit": "^0.19.13",
     "nuxt": "^3.8.0",
+    "nuxt-icon": "^0.5.0",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.4",
     "vue": "^3.3.6",
@@ -28,7 +30,10 @@
   ],
   "dependencies": {
     "@nuxt/image": "^1.0.0",
+    "@pinia/nuxt": "^0.5.1",
     "drizzle-orm": "^0.28.6",
-    "postgres": "^3.4.1"
+    "postgres": "^3.4.1",
+    "theme-change": "^2.5.0",
+    "uuid": "^9.0.1"
   }
 }
