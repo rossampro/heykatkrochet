@@ -3,10 +3,11 @@ import type { Config } from "drizzle-kit";
 dotenv.config();
 
 export default {
-    schema: "",
-    out: "./drizzle",
-    driver: "pg",
+    schema: "./drizzle/schema.ts",
+    out: "./drizzle/migrations",
+    driver: "turso",
     dbCredentials: {
-        connectionString: process.env.SUPABASE_CONNECTION_STRING
-    }
+        url: process.env.NUXT_TURSO_DB_URL as string,
+        authToken: process.env.NUXT_TURSO_DB_AUTH_TOKEN as string,
+    },
 } satisfies Config;

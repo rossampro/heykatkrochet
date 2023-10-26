@@ -10,11 +10,13 @@ export default defineNuxtConfig({
     },
     modules: [
         '@nuxt/image',
-        '@nuxtjs/supabase',
         '@pinia/nuxt',
         'nuxt-icon',
     ],
-    supabase: {
-        redirect: false,
+    runtimeConfig: {
+        turso: {
+            dbUrl: '',
+            dbAuthToken: '',
+        }
     }
 })
