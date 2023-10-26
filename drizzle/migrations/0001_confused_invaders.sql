@@ -1,0 +1,1 @@
+ALTER TABLE products ADD `template_credit` text DEFAULT '';
