@@ -1,9 +1,11 @@
 export interface IPlushie {
-    id: number;
-    name: string;
-    description: string;
-    image: string;
-    templateCredit: string;
-    price: number;
-    size: string;
-}
+    id: string,
+    name: string,
+    description: string,
+    price: number,
+    image: string,
+    size: string,
+    quantity: number,
+    createdAt: Date,
+    updatedAt: Date
+};

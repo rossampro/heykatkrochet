@@ -16,6 +16,7 @@ export const products = sqliteTable('products', {
     image: text("image").notNull(),
     size: text("size").notNull(),
     quantity: integer("quantity").notNull(),
+    templateCredit: text("template_credit").default(""),
     createdAt: integer("created_at").default(sql`(cast (unixepoch () as int))`),
     updatedAt: integer("updated_at").default(sql`(cast (unixepoch () as int))`),
 },
