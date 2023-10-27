@@ -9,11 +9,16 @@ async function getAllPlushies(db: LibSQLDatabase<typeof schema>): Promise<IPlush
     return plushies as unknown as IPlushie[];
 }
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
     const db = await useTurso();
     try {
-        return await getAllPlushies(db);
+        const plushies = await getAllPlushies(db);
+        console.log(`Get All Plushies: ${event.context}`);
+        return plushies;
     } catch (e) {
-        console.error(e);
+        throw createError({
+            message: `Failed to get all plushies: ${e}`,
+            statusCode: 500,
+        });
     }
 });

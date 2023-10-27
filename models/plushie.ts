@@ -6,6 +6,7 @@ export interface IPlushie {
     image: string,
     size: string,
     quantity: number,
+    templateCredit: string,
     createdAt: number,
     updatedAt: number
 };
@@ -16,7 +17,8 @@ export interface IPlushiePost {
     price: number,
     image: string,
     size: string,
-    quantity: number
+    quantity: number,
+    templateCredit: string
 };
 
 export interface IPlushiePostResponse {

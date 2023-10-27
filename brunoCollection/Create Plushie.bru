@@ -5,18 +5,19 @@ meta {
 }
 
 post {
-  url: http://localhost:3001/api/products
+  url: {{serverUrl}}/api/products
   body: json
   auth: none
 }
 
 body:json {
   {
-      "name": "Bees",
-      "description": "Cute bees of all shapes and sizes",
-      "price": 30.00,
-      "image": "threebees.jpg",
-      "size": "various",
-      "quantity": 3
+    "name": "Turtle",
+    "description": "Surfs up with this adorable turtle",
+    "price": 25,
+    "image": "greenandwhiteturtle.jpg",
+    "size": "small",
+    "quantity": 1,
+    "templateCredit": "CJ design"
   }
 }

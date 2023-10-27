@@ -15,6 +15,7 @@ const createPlushie = async (plushie: IPlushiePost, db: LibSQLDatabase<typeof sc
         image: plushie.image,
         size: plushie.size,
         quantity: plushie.quantity,
+        templateCredit: plushie.templateCredit,
         createdAt: Date.now(),
         updatedAt: Date.now()
     }
@@ -40,13 +41,20 @@ export default defineEventHandler(async (event) => {
             message: `Plushie created successfully: ${result[0].insertedId}`
         };
 
+        setResponseStatus(event, 201);
+        console.log(response);
         return response;
     } catch (e) {
         if (e instanceof PlushieErrorResponse) {
-            return e;
+            throw createError({
+                statusCode: e.status,
+                statusMessage: e.message
+            });
         } else {
-            const errorResponse = new PlushieErrorResponse(400, `Bad Product Request: ${e}`);
-            return errorResponse;
+            throw createError({
+                statusCode: 400,
+                statusMessage: `Bad Plushie Request: ${e}`
+            });
         }
     }
 });
