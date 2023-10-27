@@ -7,7 +7,8 @@ const themeStore = useThemeStore();
 
 const themes = [
     "cupcake",
-    "dracula"
+    "dracula",
+    "valentine"
 ];
 
 onMounted(() => {

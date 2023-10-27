@@ -20,13 +20,15 @@ const imageUrl = getImageUrl(plushie.image);
 <template>
     <div class="card w-96 bg-base-300 shadow-2xl">
         <figure>
-            <LazyNuxtImg :src="imageUrl" :alt="plushie.name" class="w-full"/>
+            <LazyNuxtImg :src="imageUrl" :alt="plushie.name" class="w-full" />
         </figure>
         <div class="card-body">
             <h2 class="card-title">{{ plushie.name }}</h2>
             <div class="flex flex-col">
                 <p>{{ plushie.description }}</p>
                 <p>Price: {{ plushie.price }}</p>
+                <p>Size: {{ plushie.size }}</p>
+                <p>Inventory Left: {{ plushie.quantity }}</p>
             </div>
             <div class="card-actions justify-center">
                 <button class="btn btn-primary">Buy</button>
