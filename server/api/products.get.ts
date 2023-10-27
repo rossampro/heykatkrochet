@@ -13,7 +13,6 @@ export default defineEventHandler(async (event) => {
     const db = await useTurso();
     try {
         const plushies = await getAllPlushies(db);
-        console.log(`Get All Plushies: ${event.context}`);
         return plushies;
     } catch (e) {
         throw createError({
