@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
     <div class="navbar bg-secondary">
         <div class="navbar-start">
@@ -10,9 +7,6 @@
                     <NuxtLink to="/store" class="text-2xl font-bold">Store</NuxtLink>
                 </div>
             </div>
-        </div>
-        <div class="navbar-center">
-            <NuxtLink to="/" class="btn btn-ghost normal-case text-xl">HeyKat Krochet</NuxtLink>
         </div>
         <div class="navbar-end">
             <Colorchange />
