@@ -2,7 +2,8 @@ export interface IPlushie {
     id: string,
     name: string,
     description: string,
-    price: number,
+    lowerPrice: number,
+    upperPrice: number | null,
     size: string,
     quantity: number,
     templateCredit: string,
@@ -13,7 +14,8 @@ export interface IPlushie {
 export interface IPlushiePost {
     name: string,
     description: string,
-    price: number,
+    lowerPrice: number,
+    upperPrice: number,
     size: string,
     quantity: number,
     templateCredit: string

@@ -27,14 +27,19 @@ function getImageUrl(name: string) {
         </div>
         <div v-else class="carousel carousel-vertical rounded-box h-96">
             <figure v-for="image in images" class="carousel-item w-full" :key="image.id">
-                <LazyNuxtImg :src="getImageUrl(image.name)" :alt="plushie.name" class="w-full" />
+                <LazyNuxtImg :src="getImageUrl(image.name)" :alt="plushie.name" class="w-full" quality="80" />
             </figure>
         </div>
         <div class="card-body">
             <h2 class="card-title">{{ plushie.name }}</h2>
             <div class="flex flex-col">
                 <p>{{ plushie.description }}</p>
-                <p>Price: {{ plushie.price }}</p>
+                <div v-if="plushie.upperPrice !== null">
+                    <p>Price Range: ${{ plushie.lowerPrice }}-${{ plushie.upperPrice }}</p>
+                </div>
+                <div v-else>
+                    <p>Price: {{ plushie.lowerPrice }}</p>
+                </div>
                 <p>Size: {{ plushie.size }}</p>
                 <p>Inventory Left: {{ plushie.quantity }}</p>
             </div>
