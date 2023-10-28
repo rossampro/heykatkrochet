@@ -15,6 +15,13 @@
       "when": 1698301485743,
       "tag": "0001_confused_invaders",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1698453115158,
+      "tag": "0002_special_doctor_octopus",
+      "breakpoints": true
     }
   ]
 }

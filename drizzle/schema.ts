@@ -25,6 +25,17 @@ export const products = sqliteTable('products', {
     })
 );
 
+export const images = sqliteTable('images', {
+    id: text("id").primaryKey(),
+    name: text("name").notNull(),
+    productId: text("product_id").references(() => products.id),
+},
+    (images) => ({
+        idIdx: uniqueIndex("image_id_idx").on(images.id),
+        productIdIdx: index("product_id_idx").on(images.productId),
+    })
+);
+
 export const users = sqliteTable('users', {
     id: text("id").primaryKey(),
     firstName: text("first_name").notNull(),
