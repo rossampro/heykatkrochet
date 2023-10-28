@@ -25,7 +25,7 @@ function getImageUrl(name: string) {
         <div v-if="imagesPending">
             <span class="loading loading-spinner loading-lg"></span>
         </div>
-        <div v-else class="carousel carousel-vertical rounded-box">
+        <div v-else class="carousel carousel-vertical rounded-box h-96">
             <figure v-for="image in images" class="carousel-item w-full" :key="image.id">
                 <LazyNuxtImg :src="getImageUrl(image.name)" :alt="plushie.name" class="w-full" />
             </figure>

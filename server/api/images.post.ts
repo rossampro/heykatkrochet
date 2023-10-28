@@ -10,7 +10,7 @@ const createImage = async (db: LibSQLDatabase<typeof schema>, imageToCreate: IIm
     const iImage: IImage = {
         id: uuidv4(),
         name: imageToCreate.name,
-        product_id: imageToCreate.product_id,
+        productId: imageToCreate.productId,
     };
 
     try {

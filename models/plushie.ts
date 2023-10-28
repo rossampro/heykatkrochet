@@ -3,7 +3,6 @@ export interface IPlushie {
     name: string,
     description: string,
     price: number,
-    image: string,
     size: string,
     quantity: number,
     templateCredit: string,
@@ -15,7 +14,6 @@ export interface IPlushiePost {
     name: string,
     description: string,
     price: number,
-    image: string,
     size: string,
     quantity: number,
     templateCredit: string

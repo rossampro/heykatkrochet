@@ -1,12 +1,12 @@
 export interface IImage {
     id: string,
     name: string,
-    product_id: string,
+    productId: string,
 };
 
 export interface IImagePostRequest {
     name: string,
-    product_id: string,
+    productId: string,
 };
 
 export interface IImagePostResponse {

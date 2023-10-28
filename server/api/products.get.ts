@@ -9,7 +9,7 @@ async function getAllPlushies(db: LibSQLDatabase<typeof schema>): Promise<IPlush
     return plushies as unknown as IPlushie[];
 }
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async () => {
     const db = await useTurso();
     try {
         const plushies = await getAllPlushies(db);
