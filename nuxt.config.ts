@@ -8,6 +8,11 @@ export default defineNuxtConfig({
             autoprefixer: {},
         }
     },
+    app: {
+        head: {
+            title: 'HeyKat Krochet'
+        },
+    },
     modules: [
         '@nuxt/image',
         '@pinia/nuxt',
