@@ -13,7 +13,6 @@ export const products = sqliteTable('products', {
     name: text("name").notNull(),
     description: text("description").notNull(),
     price: real("price").notNull(),
-    image: text("image").notNull(),
     size: text("size").notNull(),
     quantity: integer("quantity").notNull(),
     templateCredit: text("template_credit").default(""),

@@ -26,8 +26,3 @@ export interface IPlushiePostResponse {
     status: number,
     message: string
 }
-
-export interface IPlushieErrorResponse {
-    status: number,
-    message: string
-}
