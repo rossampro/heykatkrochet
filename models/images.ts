@@ -14,3 +14,7 @@ export interface IImagePostResponse {
     status: number,
     statusMessage: string,
 };
+
+export interface IImageGetRequest {
+    productId: string
+};

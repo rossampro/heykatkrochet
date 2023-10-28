@@ -27,13 +27,20 @@ export const products = sqliteTable('products', {
 export const images = sqliteTable('images', {
     id: text("id").primaryKey(),
     name: text("name").notNull(),
-    productId: text("product_id").references(() => products.id),
+    productId: text("product_id").notNull().references(() => products.id),
 },
     (images) => ({
         idIdx: uniqueIndex("image_id_idx").on(images.id),
         productIdIdx: index("product_id_idx").on(images.productId),
     })
 );
+
+export const imageRelations = relations(images, ({ one }) => ({
+    product: one(products, {
+        fields: [images.productId],
+        references: [products.id],
+    }),
+}));
 
 export const users = sqliteTable('users', {
     id: text("id").primaryKey(),

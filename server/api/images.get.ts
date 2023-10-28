@@ -1,6 +1,6 @@
 import { LibSQLDatabase } from "drizzle-orm/libsql";
 import { images } from "~/drizzle/schema";
-import type { IImage } from "~/models/images";
+import type { IImage, IImageGetRequest } from "~/models/images";
 import * as schema from "~/drizzle/schema";
 import { useTurso } from "~/server/utils/turso";
 import { eq } from "drizzle-orm";
@@ -19,21 +19,21 @@ const getImagesPerProduct = async (db: LibSQLDatabase<typeof schema>, productId:
 
 export default defineEventHandler(async (event) => {
     const db = await useTurso();
-    const productId = getRouterParam(event, "productId");
+    const query: IImageGetRequest = getQuery(event);
 
-    if (!productId) {
+    if (!query) {
         throw createError({
             statusCode: 400,
             statusMessage: "Missing productId"
         });
     }
 
-    const imageList = await getImagesPerProduct(db, productId);
+    const imageList = await getImagesPerProduct(db, query.productId);
 
     if (imageList.length === 0) {
         throw createError({
             statusCode: 404,
-            statusMessage: `No images found for product ${productId}`
+            statusMessage: `No images found for product ${query}`
         });
     }
 

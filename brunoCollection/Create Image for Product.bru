@@ -1,0 +1,18 @@
+meta {
+  name: Create Image for Product
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{serverUrl}}/api/images
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "threebees.jpg",
+    "product_id": "4f4d9dc7-f06c-4159-8067-bc7a8a4fd8ef"
+  }
+}
