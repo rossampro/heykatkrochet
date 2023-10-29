@@ -38,7 +38,7 @@ function getImageUrl(name: string) {
                     <p>Price Range: ${{ plushie.lowerPrice }}-${{ plushie.upperPrice }}</p>
                 </div>
                 <div v-else>
-                    <p>Price: {{ plushie.lowerPrice }}</p>
+                    <p>Price: ${{ plushie.lowerPrice }}</p>
                 </div>
                 <p>Size: {{ plushie.size }}</p>
                 <p>Inventory Left: {{ plushie.quantity }}</p>
