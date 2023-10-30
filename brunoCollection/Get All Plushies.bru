@@ -10,6 +10,11 @@ get {
   auth: none
 }
 
+assert {
+  res.status: eq 200
+  res.body[0].name: isString 
+}
+
 tests {
   test("should get all products", function() {
     const data = res.getBody();
