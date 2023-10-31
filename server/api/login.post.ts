@@ -30,6 +30,7 @@ const comparePassword = (password: string, hash: string): boolean => {
 
 export default defineEventHandler(async (event) => {
     const loginRequest: LoginCredentials = await readBody(event);
+    console.log(loginRequest);
     const db = await useTurso();
 
     const user = await getUser(db, loginRequest.email);
