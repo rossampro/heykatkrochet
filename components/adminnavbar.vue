@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { useUserStore } from '~/stores/usersession';
 
+const userStore = useUserStore();
+
+const logOut = () => {
+    userStore.logout();
+    navigateTo('/');
+}
 </script>
 <template>
     <div class="navbar bg-secondary">
@@ -20,6 +27,7 @@
             <NuxtLink to="/admin/home" class="btn btn-ghost rounded-btn">Admin Home</NuxtLink>
         </div>
         <div class="navbar-end">
+            <button class="btn rounded-btn btn-secondary" @click="logOut">Log Out</button>
             <Colorchange />
         </div>
     </div>

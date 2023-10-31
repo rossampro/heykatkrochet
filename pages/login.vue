@@ -1,20 +1,36 @@
 <script setup lang="ts">
+import type { LoginCredentials, LoginResponse } from '~/models/authentication';
+import { useUserStore } from '~/stores/usersession';
+
+
+const userStore = useUserStore();
 
 const email = ref('');
 const password = ref('');
 
-const { execute, status } = await useFetch('/api/login', {
-    method: 'POST',
-    baseURL: '/api/login',
+const { execute, status } = await useLazyAsyncData(`/api/login${Date.now()}`, async () => {
+    const body: LoginCredentials = {
+        email: email.value,
+        password: password.value,
+    };
+    const response = await $fetch<LoginResponse>('/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: body
+    });
+
+    if (response.userType == 'admin') {
+        userStore.login(response.userType);
+        navigateTo('/admin/home');
+    } else {
+        alert('Invalid user');
+        throw new Error('Invalid user');
+    }
+
+}, {
     immediate: false,
-    watch: false,
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: {
-        email: email,
-        password: password
-    },
 });
 
 </script>
@@ -45,7 +61,7 @@ const { execute, status } = await useFetch('/api/login', {
                             </label>
                         </div>
                         <div class="form-control mt-6">
-                            <button class="btn btn-primary" @click="execute">Login</button>
+                            <button class="btn btn-primary" @click="execute(undefined)">Login</button>
                         </div>
                     </form>
                 </div>
