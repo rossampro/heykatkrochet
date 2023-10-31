@@ -2,6 +2,8 @@ import { LibSQLDatabase, drizzle } from 'drizzle-orm/libsql';
 import * as schema from '~/drizzle/schema';
 import { createClient } from '@libsql/client';
 
+export type TursoDb = LibSQLDatabase<typeof schema>;
+
 export async function useTurso() {
     const config = useRuntimeConfig().turso;
     const client = createClient({

@@ -1,11 +1,11 @@
 import { LibSQLDatabase } from "drizzle-orm/libsql";
 import { images } from "~/drizzle/schema";
 import type { IImage, IImageGetRequest } from "~/models/images";
-import * as schema from "~/drizzle/schema";
+import type { TursoDb } from "~/server/utils/turso";
 import { useTurso } from "~/server/utils/turso";
 import { eq } from "drizzle-orm";
 
-const getImagesPerProduct = async (db: LibSQLDatabase<typeof schema>, productId: string): Promise<IImage[]> => {
+const getImagesPerProduct = async (db: TursoDb, productId: string): Promise<IImage[]> => {
     try {
         const imageList = await db.select().from(images).where(eq(images.productId, productId));
         return imageList as unknown as IImage[];

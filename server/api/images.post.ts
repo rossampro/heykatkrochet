@@ -1,12 +1,11 @@
-import { LibSQLDatabase } from "drizzle-orm/libsql";
 import { images } from "~/drizzle/schema";
 import type { IImage, IImagePostRequest, IImagePostResponse } from "~/models/images";
 import { ImageErrorResponse } from "~/models/errors";
-import * as schema from "~/drizzle/schema";
 import { useTurso } from "~/server/utils/turso";
 import { v4 as uuidv4 } from "uuid";
+import type { TursoDb } from "~/server/utils/turso";
 
-const createImage = async (db: LibSQLDatabase<typeof schema>, imageToCreate: IImagePostRequest) => {
+const createImage = async (db: TursoDb, imageToCreate: IImagePostRequest) => {
     const iImage: IImage = {
         id: uuidv4(),
         name: imageToCreate.name,

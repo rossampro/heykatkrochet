@@ -54,6 +54,7 @@ export const users = sqliteTable('users', {
     email: text("email").notNull(),
     address: text("address"),
     phone: text("phone"),
+    userType: text("user_type").notNull().default("customer"),
     createdAt: integer("created_at").default(sql`(cast (unixepoch () as int))`),
     updatedAt: integer("updated_at").default(sql`(cast (unixepoch () as int))`),
 },
