@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IPlushiePost } from '~/models/plushie';
+import type { IPlushiePost, IPlushiePostResponse } from '~/models/plushie';
 
 const productName = ref('');
 const productDescription = ref('');
@@ -9,30 +9,34 @@ const productSize = ref('');
 const productQuanity = ref(0);
 const templateCredit = ref('');
 
-const { execute, status } = await useLazyFetch('/api/products', {
-    method: 'POST',
-    immediate: false,
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: () => {
-        const product: IPlushiePost = {
-            name: productName.value,
-            description: productDescription.value,
-            lowerPrice: lowerPrice.value,
-            upperPrice: upperPrice.value,
-            size: productSize.value,
-            quantity: productQuanity.value,
-            templateCredit: templateCredit.value,
-        };
-        return product;
+const { execute, status } = await useLazyAsyncData(`/api/products`, async () => {
+    const product: IPlushiePost = {
+        name: productName.value,
+        description: productDescription.value,
+        lowerPrice: lowerPrice.value,
+        upperPrice: upperPrice.value,
+        size: productSize.value,
+        quantity: productQuanity.value,
+        templateCredit: templateCredit.value,
+    };
+
+    const createPlushieResponse: IPlushiePostResponse = await $fetch(`/api/products`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: product,
+    });
+},
+    {
+        immediate: false,
     }
-})
+)
 
 
 </script>
 <template>
-    <div>
+    <div class="flex flex-col place-items-center items-center m-auto">
         <div class="card w-fit bg-base-300 shadow-xl">
             <div class="card-body">
                 <h2 class="card-title">Create Product</h2>
@@ -81,10 +85,16 @@ const { execute, status } = await useLazyFetch('/api/products', {
                         </label>
                         <input type="text" placeholder="Template Credits" class="input input-bordered w-full max-w-s"
                             v-model="templateCredit">
+
+                        <label class="label">
+                            <span class="label-text">Image Upload</span>
+                            <span class="label-text-alt">Any image file accepted </span>
+                        </label>
+                        <input type="file" class="file-input file-input-bordered w-full max-w-s">
                     </form>
                 </div>
                 <div v-if="status === 'idle'" class="card-actions justify-end">
-                    <button class="btn btn-primary" @click="execute">Submit</button>
+                    <button class="btn btn-primary" @click="execute(undefined)">Submit</button>
                 </div>
 
                 <div v-else-if="status === 'pending'">

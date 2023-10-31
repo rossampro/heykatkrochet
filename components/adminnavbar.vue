@@ -9,12 +9,18 @@
                     <NuxtLink to="/admin/home" class="link link-hover">Admin Home</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/admin/create" class="link link-hover">Create Product</NuxtLink>
+                    <NuxtLink to="/admin/product" class="link link-hover">Create Product</NuxtLink>
                 </li>
                 <li>
                     <NuxtLink to="/admin/update" class="link link-hover">Update Product</NuxtLink>
                 </li>
             </ul>
+        </div>
+        <div class="navbar-center">
+            <NuxtLink to="/admin/home" class="btn btn-ghost rounded-btn">Admin Home</NuxtLink>
+        </div>
+        <div class="navbar-end">
+            <Colorchange />
         </div>
     </div>
 </template>
