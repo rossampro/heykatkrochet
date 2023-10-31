@@ -15,9 +15,6 @@
                     <li>
                         <NuxtLink to="/store" class="text-lg link">Store</NuxtLink>
                     </li>
-                    <li>
-                        <NuxtLink to="/login" class="text-lg link">Admin</NuxtLink>
-                    </li>
                 </ul>
             </div>
         </div>
