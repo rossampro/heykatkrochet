@@ -46,3 +46,43 @@ export const imageRelations = relations(images, ({ one }) => ({
         references: [products.id]
     }),
 }));
+
+export const users = sqliteTable('users', {
+    id: text("id").primaryKey(),
+    firstName: text("first_name").notNull(),
+    lastName: text("last_name").notNull(),
+    email: text("email").notNull(),
+    address: text("address"),
+    phone: text("phone"),
+    createdAt: integer("created_at").default(sql`(cast (unixepoch () as int))`),
+    updatedAt: integer("updated_at").default(sql`(cast (unixepoch () as int))`),
+},
+    (users) => ({
+        emailIdx: uniqueIndex("email_idx").on(users.email),
+        firstNameLastNameAddressIdx: index("first_name_last_name_address_idx").on(
+            users.firstName,
+            users.lastName,
+            users.address
+        ),
+    })
+);
+
+export const userRelations = relations(users, ({ one }) => ({
+    password: one(passwords, {
+        fields: [users.id],
+        references: [passwords.userId]
+    })
+}));
+
+export const passwords = sqliteTable('passwords', {
+    hash: text("hash").notNull(),
+    userId: text("userId").notNull().references(() => users.id),
+});
+
+export const passwordsRelations = relations(passwords, ({ one }) => ({
+    user: one(users, {
+        fields: [passwords.userId],
+        references: [users.id],
+    }),
+}));
+
