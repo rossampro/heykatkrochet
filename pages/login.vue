@@ -8,34 +8,30 @@ const userStore = useUserStore();
 const email = ref('');
 const password = ref('');
 
-const { execute, status } = await useLazyAsyncData(`/api/login${Date.now()}`, async () => {
-    const body: LoginCredentials = {
-        email: email.value,
-        password: password.value,
-    };
-    const response = await $fetch<LoginResponse>('/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: body
-    });
-
-    if (response.userType == 'admin') {
-        userStore.login(response.userType);
-        navigateTo('/admin/home');
-    } else {
-        alert('Invalid user');
-        throw new Error('Invalid user');
-    }
-
-}, {
+const { data, execute, error, status } = await useLazyFetch('/api/login', {
+    method: 'POST',
     immediate: false,
-});
+    watch: false,
+    body: {
+        email: email,
+        password: password
+    }
+})
+
+watch(data, () => {
+    if (data.value?.userType === 'admin') {
+        userStore.login(data.value.userType);
+        navigateTo('/admin/home');
+    };
+})
+
 
 </script>
 <template>
     <div>
+        <div v-if="error">
+            <h1>{{ JSON.stringify(error) }}</h1>
+        </div>
         <div class="hero min-h-screen bg-base-200">
             <div class="hero-content flex-col lg:flex-row-reverse">
                 <div class="text-center lg:text-left">
@@ -60,8 +56,17 @@ const { execute, status } = await useLazyAsyncData(`/api/login${Date.now()}`, as
                                 <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
-                        <div class="form-control mt-6">
-                            <button class="btn btn-primary" @click="execute(undefined)">Login</button>
+                        <div class="form-control mt-6" v-if="status === 'idle'">
+                            <button class="btn btn-primary" @click="execute">Login</button>
+                        </div>
+                        <div class="form-control mt-6" v-else-if="status === 'pending'">
+                            <button class="btn btn-primary loading loading-spinner"></button>
+                        </div>
+                        <div class="form-control mt-6" v-else-if="status === 'error'">
+                            <button class="btn btn-primary">{{ error }}</button>
+                        </div>
+                        <div class="form-control mt-6" v-else-if="status === 'success'">
+                            <button class="btn btn-primary btn-disabled">Yay</button>
                         </div>
                     </form>
                 </div>
