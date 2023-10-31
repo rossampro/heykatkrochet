@@ -44,6 +44,5 @@ export default defineEventHandler(async (event) => {
     }
 
     const response = { id: user.id, userType: user.userType };
-    console.log(response);
     return response;
 });
