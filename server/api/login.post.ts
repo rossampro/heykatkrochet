@@ -5,44 +5,44 @@ import { LoginCredentials } from "~/models/authentication";
 import * as schema from "~/drizzle/schema";
 
 const getUser = async (db: LibSQLDatabase<typeof schema>, email: string) => {
-    const user = await db.query.users.findFirst({
-        where: (users, { eq }) => eq(users.email, email),
-        with: {
-            password: true
-        },
+  const user = await db.query.users.findFirst({
+    where: (users, { eq }) => eq(users.email, email),
+    with: {
+      password: true
+    },
+  });
+
+  if (!user) {
+    throw createError({
+      statusCode: 404,
+      message: "User not found"
     });
+  }
 
-    if (!user) {
-        throw createError({
-            statusCode: 404,
-            message: "User not found"
-        });
-    }
-
-    return user;
+  return user;
 };
 
 const comparePassword = (password: string, hash: string): boolean => {
-    return bcrypt.compareSync(password, hash);
+  return bcrypt.compareSync(password, hash);
 }
 
 
 
 export default defineEventHandler(async (event) => {
-    const loginRequest = await readBody<LoginCredentials>(event);
-    const db = await useTurso();
+  const loginRequest = await readBody<LoginCredentials>(event);
+  const db = await useTurso();
 
-    const user = await getUser(db, loginRequest.email);
+  const user = await getUser(db, loginRequest.email);
 
-    const areMatch = comparePassword(loginRequest.password, user.password.hash);
+  const areMatch = comparePassword(loginRequest.password, user.password.hash);
 
-    if (!areMatch) {
-        throw createError({
-            statusCode: 401,
-            message: "Invalid password"
-        });
-    }
+  if (!areMatch) {
+    throw createError({
+      statusCode: 401,
+      message: "Invalid password"
+    });
+  }
 
-    const response = { id: user.id, userType: user.userType };
-    return response;
+  const response = { id: user.id, userType: user.userType };
+  return response;
 });
