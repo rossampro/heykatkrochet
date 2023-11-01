@@ -1,5 +1,4 @@
 import { LibSQLDatabase } from "drizzle-orm/libsql";
-import { users, passwords } from "~/drizzle/schema";
 import bcrypt from "bcryptjs";
 import { LoginCredentials } from "~/models/authentication";
 import * as schema from "~/drizzle/schema";

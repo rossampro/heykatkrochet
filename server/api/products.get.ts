@@ -1,11 +1,14 @@
 import { LibSQLDatabase } from "drizzle-orm/libsql";
-import { products } from "~/drizzle/schema";
 import type { IPlushie } from "~/models/plushie";
 import * as schema from "~/drizzle/schema";
 import { useTurso } from "../utils/turso";
 
 async function getAllPlushies(db: LibSQLDatabase<typeof schema>): Promise<IPlushie[]> {
-  const plushies = await db.select().from(products);
+  const plushies = await db.query.products.findMany({
+    with: {
+      images: true,
+    },
+  });
   return plushies as unknown as IPlushie[];
 }
 
