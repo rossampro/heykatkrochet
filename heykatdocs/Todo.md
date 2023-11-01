@@ -1,0 +1,3 @@
+ - [ ] fix admin panel upload bug
+	 - [ ] bug when not providing upper price
+	 - [ ] should pass null instead

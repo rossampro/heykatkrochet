@@ -12,7 +12,7 @@ const createPlushie = async (plushie: IPlushiePost, db: LibSQLDatabase<typeof sc
     name: plushie.name,
     description: plushie.description,
     lowerPrice: plushie.lowerPrice,
-    upperPrice: plushie.upperPrice,
+    upperPrice: plushie.upperPrice === 0 ? null : plushie.upperPrice,
     size: plushie.size,
     quantity: plushie.quantity,
     templateCredit: plushie.templateCredit,
