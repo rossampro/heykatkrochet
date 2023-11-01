@@ -9,7 +9,7 @@ const productSize = ref('');
 const productQuanity = ref(0);
 const templateCredit = ref('');
 
-const { data, execute, status } = await useLazyAsyncData(`/api/products`, async () => {
+const { execute, status } = await useLazyAsyncData(`/api/products`, async () => {
   const product: IPlushiePost = {
     name: productName.value,
     description: productDescription.value,
@@ -20,26 +20,26 @@ const { data, execute, status } = await useLazyAsyncData(`/api/products`, async 
     templateCredit: templateCredit.value,
   };
 
-  return await $fetch(`/api/products`, {
+  await $fetch(`/api/products`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: product,
   });
+
+  productName.value = '';
+  productDescription.value = '';
+  lowerPrice.value = 0;
+  upperPrice.value = 0;
+  productSize.value = '';
+  productQuanity.value = 0;
+  templateCredit.value = '';
 },
   {
     immediate: false,
   }
 )
-
-watch(data, () => {
-  if (data.value?.status === 201) {
-    alert('Product Created!');
-  }
-});
-
-
 
 </script>
 <template>
