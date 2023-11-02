@@ -1,4 +1,5 @@
 import { LibSQLDatabase } from "drizzle-orm/libsql";
+import { ne } from "drizzle-orm";
 import type { IPlushie } from "~/models/plushie";
 import * as schema from "~/drizzle/schema";
 import { useTurso } from "../utils/turso";
@@ -9,7 +10,10 @@ async function getAllPlushies(db: LibSQLDatabase<typeof schema>): Promise<IPlush
       images: true,
     },
   });
-  return plushies as unknown as IPlushie[];
+
+  const filteredPlushies = plushies.filter((plushie) => plushie.images.length !== 0);
+
+  return filteredPlushies as unknown as IPlushie[];
 }
 
 export default defineEventHandler(async () => {
