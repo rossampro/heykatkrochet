@@ -1,3 +1,4 @@
+import { images } from "~/drizzle/schema"
 export interface IImage {
     id: string,
     name: string,
@@ -18,3 +19,5 @@ export interface IImagePostResponse {
 export interface IImageGetRequest {
     productId: string
 };
+
+export type DbImage = typeof images.$inferSelect;
