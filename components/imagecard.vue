@@ -17,6 +17,9 @@ const { data: images, pending: imagesPending } = await
     });
 
 const meta = import.meta.url;
+function getImageUrl(name: string, meta: string): string {
+    return new URL(`../assets/images/${name}`, meta).href;
+}
 </script>
 
 <template>
