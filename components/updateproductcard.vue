@@ -27,9 +27,8 @@ const { execute, status } = await useLazyFetch('/api/products', {
     immediate: false
 });
 
-const meta = import.meta.url;
 function getAdminImageUrl(name: string): string {
-    const imageUrl = new URL(`../assets/images/${name}`, meta).href;
+    const imageUrl = new URL(`../assets/images/${name}`, import.meta.url).href;
     return imageUrl
 }
 

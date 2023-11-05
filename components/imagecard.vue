@@ -16,9 +16,8 @@ const { data: images, pending: imagesPending } = await
         return $fetch(`/api/images?productId=${plushie.id}`);
     });
 
-const meta = import.meta.url;
-function getImageUrl(name: string, meta: string): string {
-    return new URL(`../assets/images/${name}`, meta).href;
+function getImageUrl(name: string): string {
+    return new URL(`../assets/images/${name}`, import.meta.url).href;
 }
 </script>
 
@@ -29,8 +28,7 @@ function getImageUrl(name: string, meta: string): string {
         </div>
         <div v-else class="carousel carousel-vertical rounded-box h-96">
             <figure v-for="image in images" class="carousel-item w-full" :key="image.id">
-                <LazyNuxtImg format="webp" :src="getImageUrl(image.name, meta)" :alt="plushie.name" class="w-full"
-                    quality="70" />
+                <LazyNuxtImg format="webp" :src="getImageUrl(image.name)" :alt="plushie.name" class="w-full" quality="70" />
             </figure>
         </div>
         <div class="card-body">
