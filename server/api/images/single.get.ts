@@ -1,6 +1,6 @@
 import { images } from "~/drizzle/schema";
 import type { TursoDb } from "~/server/utils/turso";
-import type { IImage } from "~/models/images";
+import type { IImage, IImageGetRequest } from "~/models/images";
 import { useTurso } from "~/server/utils/turso";
 import { eq } from "drizzle-orm";
 
@@ -28,9 +28,9 @@ const getImagePerProduct = async (db: TursoDb, productId: string): Promise<IImag
 }
 
 export default defineEventHandler(async (event) => {
-    const productId = getRouterParam(event, 'productId')
+    const query: IImageGetRequest = getQuery(event);
 
-    if (!productId) {
+    if (!query.productId) {
         throw createError({
             statusCode: 400,
             message: "Bad request, must provide productId"
@@ -38,5 +38,5 @@ export default defineEventHandler(async (event) => {
     };
 
     const db = await useTurso();
-    return getImagePerProduct(db, productId);
+    return getImagePerProduct(db, query.productId);
 })

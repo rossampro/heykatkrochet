@@ -12,6 +12,10 @@ export default defineNuxtConfig({
         head: {
             title: 'HeyKat Krochet'
         },
+        layoutTransition: {
+            name: 'layout',
+            mode: 'in-out'
+        }
     },
     modules: [
         '@nuxt/image',

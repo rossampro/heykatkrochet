@@ -1,3 +1,4 @@
+import { products } from "~/drizzle/schema"
 export interface IPlushie {
     id: string,
     name: string,
@@ -26,3 +27,5 @@ export interface IPlushiePostResponse {
     status: number,
     message: string
 }
+
+export type IPlushiePut = typeof products.$inferInsert;

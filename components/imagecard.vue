@@ -11,13 +11,10 @@ const props = defineProps({
 
 const plushie = props.plushie;
 
-const { data: images, pending: imagesPending } = await useLazyAsyncData<IImage[]>(`/api/images/${plushie.id}`, () => {
-    return $fetch(`/api/images?productId=${plushie.id}`);
-})
-
-function getImageUrl(name: string) {
-    return new URL(`../assets/images/${name}`, import.meta.url).href;
-};
+const { data: images, pending: imagesPending } = await
+    useLazyAsyncData<IImage[]>(`/api/images/${plushie.id}`, () => {
+        return $fetch(`/api/images?productId=${plushie.id}`);
+    })
 </script>
 
 <template>
