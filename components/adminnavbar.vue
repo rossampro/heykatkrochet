@@ -19,7 +19,7 @@ const logOut = () => {
                     <NuxtLink to="/admin/product" class="link link-hover">Create Product</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/admin/update" class="link link-hover">Update Product</NuxtLink>
+                    <NuxtLink to="/admin/updateproduct" class="link link-hover">Update Product</NuxtLink>
                 </li>
             </ul>
         </div>

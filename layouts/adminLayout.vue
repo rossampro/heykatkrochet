@@ -1,15 +1,17 @@
 <template>
-    <header>
-        <div>
-            <Adminnavbar />
-        </div>
-    </header>
     <div>
-        <slot />
-    </div>
-    <footer>
+        <header>
+            <div>
+                <Adminnavbar />
+            </div>
+        </header>
         <div>
-            <Footercomponent />
+            <slot />
         </div>
-    </footer>
+        <footer>
+            <div>
+                <Footercomponent />
+            </div>
+        </footer>
+    </div>
 </template>
