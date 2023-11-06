@@ -14,7 +14,7 @@ const updatePlushie = async (plushie: IPlushie, db: TursoDb): Promise<UpdateSucc
         name: plushie.name,
         description: plushie.description,
         lowerPrice: plushie.lowerPrice,
-        upperPrice: plushie.upperPrice ? null : plushie.upperPrice,
+        upperPrice: plushie.upperPrice === 0 ? null : plushie.upperPrice,
         size: plushie.size,
         quantity: plushie.quantity,
         templateCredit: plushie.templateCredit,

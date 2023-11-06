@@ -24,7 +24,8 @@ const { data: image, pending: imagePending, error } = await
 const { execute, status } = await useLazyFetch('/api/products', {
     method: 'PUT',
     body: updateRequest,
-    immediate: false
+    immediate: false,
+    watch: false
 });
 
 function getAdminImageUrl(name: string): string {
@@ -77,8 +78,7 @@ function getAdminImageUrl(name: string): string {
                 </div>
 
                 <label class="label">
-                    <span v-if="plushie.upperPrice === null" class="label-text">Price</span>
-                    <span v-else class="label-text">Lower Price</span>
+                    <span class="label-text">Lower Price</span>
                 </label>
                 <div v-if="isEdit">
                     <input type="number" :placeholder="plushie.lowerPrice.toString()"
@@ -89,18 +89,16 @@ function getAdminImageUrl(name: string): string {
                         class="input input-bordered w-full max-w-s" disabled />
                 </div>
 
-                <div v-if="plushie.upperPrice !== null">
-                    <label class="label">
-                        <span class="label-text">Upper Price</span>
-                    </label>
-                    <div v-if="isEdit">
-                        <input type="number" :placeholder="plushie.upperPrice.toString()" v-model="updateRequest.upperPrice"
-                            class="input input-bordered w-full max-w-s" />
-                    </div>
-                    <div v-else>
-                        <input type="number" :placeholder="plushie.upperPrice.toString()"
-                            class="input input-bordered w-full max-w-s" disabled />
-                    </div>
+                <label class="label">
+                    <span class="label-text">Upper Price</span>
+                </label>
+                <div v-if="isEdit">
+                    <input type="number" :placeholder="plushie.upperPrice?.toString()" v-model="updateRequest.upperPrice"
+                        class="input input-bordered w-full max-w-s" />
+                </div>
+                <div v-else>
+                    <input type="number" :placeholder="plushie.upperPrice?.toString()"
+                        class="input input-bordered w-full max-w-s" disabled />
                 </div>
 
                 <label class="label">
