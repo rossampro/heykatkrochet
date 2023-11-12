@@ -1,6 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
+    devServer: {
+        port: 3000,
+        url: "http://127.0.0.1:3000"
+    },
     css: ['~/assets/css/main.css'],
     postcss: {
         plugins: {
@@ -37,11 +41,15 @@ export default defineNuxtConfig({
                 clientId: '',
                 clientSecret: ''
             }
+        },
+        authjs: {
+            secret: ''
         }
     },
     auth: {
         provider: {
             type: 'authjs'
-        }
+        },
+        globalAppMiddleware: false,
     }
 })

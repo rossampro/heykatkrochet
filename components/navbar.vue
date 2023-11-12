@@ -1,3 +1,6 @@
+<script setup lang="ts">
+
+</script>
 <template>
     <div class="navbar bg-secondary">
         <div class="navbar-start">
@@ -24,6 +27,7 @@
         <div class="navbar-end">
             <Shoppingcart />
             <Colorchange />
+            <NuxtLink to="/login" class="btn normal-case">Login</NuxtLink>
         </div>
     </div>
 </template>
