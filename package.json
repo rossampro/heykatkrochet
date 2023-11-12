@@ -11,10 +11,12 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@sidebase/nuxt-auth": "latest",
     "@tailwindcss/forms": "^0.5.6",
     "@tailwindcss/typography": "^0.5.10",
     "@types/bcryptjs": "^2.4.5",
     "@types/uuid": "^9.0.6",
+    "@unlok-co/nuxt-stripe": "latest",
     "autoprefixer": "^10.4.16",
     "daisyui": "latest",
     "dotenv": "^16.3.1",
@@ -39,6 +41,7 @@
     "drizzle-orm": "^0.28.6",
     "jsdoc": "^4.0.2",
     "jsonwebtoken": "^9.0.2",
+    "next-auth": "4.21.1",
     "theme-change": "^2.5.0",
     "uuid": "^9.0.1"
   }

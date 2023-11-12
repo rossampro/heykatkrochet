@@ -22,6 +22,7 @@
             <NuxtLink to="/" class="btn btn-ghost normal-case">HeyKat Krochet</NuxtLink>
         </div>
         <div class="navbar-end">
+            <Shoppingcart />
             <Colorchange />
         </div>
     </div>
