@@ -1,11 +1,5 @@
 <template>
     <div>
-        <header>
-            <div>
-                <navbar />
-            </div>
-        </header>
-
         <div>
             <slot />
         </div>

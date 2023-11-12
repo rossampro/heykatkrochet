@@ -1,5 +1,12 @@
 <script setup lang="ts">
 
+const { status, signOut, data } = useAuth();
+
+const logOut = (e: Event) => {
+    e.preventDefault();
+    signOut({ callbackUrl: '/' });
+}
+
 </script>
 <template>
     <div class="navbar bg-secondary">
@@ -25,9 +32,11 @@
             <NuxtLink to="/" class="btn btn-ghost normal-case">HeyKat Krochet</NuxtLink>
         </div>
         <div class="navbar-end">
+            <span v-if="status === 'authenticated'">Hello {{ data?.user?.name }}</span>
             <Shoppingcart />
             <Colorchange />
-            <NuxtLink to="/login" class="btn normal-case">Login</NuxtLink>
+            <NuxtLink v-if="status !== 'authenticated'" to="/login" class="btn normal-case">Login</NuxtLink>
+            <button v-else class="btn normal-case" @click="logOut">Logout</button>
         </div>
     </div>
 </template>

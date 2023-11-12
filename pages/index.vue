@@ -1,7 +1,10 @@
-<script setup lang="ts">
-</script>
 <template>
     <div>
+        <div>
+            <header>
+                <Navbar />
+            </header>
+        </div>
         <div>
             <welcomeview />
         </div>
