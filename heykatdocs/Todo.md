@@ -1,3 +1,11 @@
- - [ ] fix admin panel upload bug
-	 - [ ] bug when not providing upper price
-	 - [ ] should pass null instead
+ - [x] fix admin panel upload bug
+	 - [x] bug when not providing upper price
+	 - [x] should pass null instead
+- [ ] get shopping cart working
+	- [ ] integrate with OAuth
+		- [ ] setup google sign in
+		- [ ] instagram sign in (if available)
+	- [ ] get payment processors working
+		- [ ] pay with paypal
+		- [ ] pay with credit card
+		- [ ] pay with venmo/cashapp etc

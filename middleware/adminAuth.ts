@@ -1,11 +1,11 @@
 const userStore = useUserStore();
 export default defineNuxtRouteMiddleware((to, from) => {
-    if (to.path === '/' || to.path === '/login' || to.path === '/store') {
+    if (to.path === '/' || to.path === '/adminlogin' || to.path === '/store') {
         return;
     };
 
     if (userStore.isAuthorized == false) {
-        return navigateTo('/login');
+        return navigateTo('/adminlogin');
     };
 
     if (userStore.getUserType !== 'admin') {

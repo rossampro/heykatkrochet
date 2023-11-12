@@ -47,7 +47,7 @@ function getAdminImageUrl(name: string): string {
             </div>
             <div v-else class="rounded-box h-96 carousel carousel-vertical">
                 <figure class="w-full carousel-item">
-                    <LazyNuxtImg format="webp" :src="getAdminImageUrl(image.name)" :alt="plushie.name" class="w-full"
+                    <LazyNuxtPicture format="webp" :src="getAdminImageUrl(image.name)" :alt="plushie.name" class="w-full"
                         quality="70" />
                 </figure>
             </div>

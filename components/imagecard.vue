@@ -28,7 +28,8 @@ function getImageUrl(name: string): string {
         </div>
         <div v-else class="carousel carousel-vertical rounded-box h-96">
             <figure v-for="image in images" class="carousel-item w-full" :key="image.id">
-                <LazyNuxtImg format="webp" :src="getImageUrl(image.name)" :alt="plushie.name" class="w-full" quality="70" />
+                <LazyNuxtPicture format="webp" :src="getImageUrl(image.name)" :alt="plushie.name" class="w-full"
+                    quality="70" />
             </figure>
         </div>
         <div class="card-body">
