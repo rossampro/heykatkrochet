@@ -35,7 +35,7 @@ const env = process.env.NODE_ENV;
         </div>
         <div class="navbar-end">
             <span v-if="status === 'authenticated'">Hello {{ data?.user?.name }}</span>
-            <Shoppingcart />
+            <Shoppingcart v-if="env != 'production'" />
             <Colorchange />
             <div v-if="env != 'production'">
                 <NuxtLink v-if="status !== 'authenticated'" to="/login" class="btn normal-case">Login</NuxtLink>
