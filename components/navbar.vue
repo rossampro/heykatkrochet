@@ -7,6 +7,8 @@ const logOut = (e: Event) => {
     signOut({ callbackUrl: '/' });
 }
 
+const env = process.env.NODE_ENV;
+
 </script>
 <template>
     <div class="navbar bg-secondary">
@@ -35,8 +37,10 @@ const logOut = (e: Event) => {
             <span v-if="status === 'authenticated'">Hello {{ data?.user?.name }}</span>
             <Shoppingcart />
             <Colorchange />
-            <NuxtLink v-if="status !== 'authenticated'" to="/login" class="btn normal-case">Login</NuxtLink>
-            <button v-else class="btn normal-case" @click="logOut">Logout</button>
+            <div v-if="env != 'production'">
+                <NuxtLink v-if="status !== 'authenticated'" to="/login" class="btn normal-case">Login</NuxtLink>
+                <button v-else class="btn normal-case" @click="logOut">Logout</button>
+            </div>
         </div>
     </div>
 </template>
