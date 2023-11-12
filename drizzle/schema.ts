@@ -1,4 +1,5 @@
 import { relations, sql } from 'drizzle-orm';
+import { v4 as uuidv4 } from 'uuid';
 import {
     index,
     integer,
@@ -75,6 +76,13 @@ export const userRelations = relations(users, ({ one }) => ({
     })
 }));
 
+export const carts = sqliteTable('carts', {
+    id: text("id").primaryKey(),
+    userId: text("user_id").notNull().references(() => users.id),
+    cartItemsId: text("cart_items_id").notNull()
+});
+
+
 export const passwords = sqliteTable('passwords', {
     hash: text("hash").notNull(),
     userId: text("userId").notNull().references(() => users.id),
@@ -87,3 +95,10 @@ export const passwordsRelations = relations(passwords, ({ one }) => ({
     }),
 }));
 
+export const cartRelations = relations(carts, ({ one, many }) => ({
+    cartItems: many(cartItems)
+}));
+
+export const cartItems = sqliteTable("cart_items", {
+    id: text("id").notNull().default(uuidv4())
+})
