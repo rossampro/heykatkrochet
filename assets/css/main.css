@@ -1,3 +1,60 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+    name: "crochet";
+    default: true;
+    prefersdark: false;
+    color-scheme: light;
+
+    --color-base-100: oklch(100% 0 0);
+    --color-base-200: oklch(97.5% 0.02 264.99);
+    --color-base-300: oklch(95.5% 0.03 264.99);
+    --color-base-content: oklch(18.5% 0.09 262.5);
+    --color-info: oklch(75.5% 0.18 233.5);
+    --color-success: oklch(70.5% 0.18 145.5);
+    --color-primary: oklch(85.5% 0.14 327.5);
+    --color-primary-content: oklch(100% 0 0);
+    --color-secondary: oklch(85.5% 0.14 83.5);
+    --color-secondary-content: oklch(100% 0 0);
+    --color-accent: oklch(75.5% 0.14 259.5);
+    --color-accent-content: oklch(100% 0 0);
+    --color-neutral: oklch(18.5% 0.05 262.5);
+    --color-warning: oklch(75.5% 0.18 83.5);
+    --color-error: oklch(70.5% 0.18 33.5);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply text-base-content;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--color-primary);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.gallery-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4;
+}
+
+.gallery-grid .card {
+  @apply transition-transform duration-300 hover:scale-[1.02] h-full;
+}
+
+.gallery-grid .card figure {
+  @apply aspect-[3/4] w-full overflow-hidden;
+}
+
+.gallery-grid .card figure img {
+  @apply w-full h-full object-cover object-center transition-transform duration-300;
+}
+
+.hero-section {
+  @apply min-h-[80vh] flex items-center justify-center;
+}
